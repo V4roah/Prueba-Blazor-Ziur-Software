@@ -1,0 +1,31 @@
+# Archivos generados por el sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de compilación y salida
+/bin/
+/obj/
+
+# Archivos de configuración específicos del entorno de desarrollo
+.vs/
+.vscode/
+
+# Archivos de configuración de NuGet
+.nuget/
+
+# Archivos de dependencias locales
+packages/
+
+# Configuración de Rider
+.idea/
+
+# Archivos de configuración de Visual Studio
+.vs2019/
+.vs2017/
+.vs/
+
+# Archivos generados por el framework .NET
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
