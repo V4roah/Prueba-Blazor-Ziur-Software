@@ -1,5 +1,6 @@
 @page "/documentos"
 
+@inject NavigationManager Navigation
 @using Blazor_Prueba.Models
 @inject HttpClient Http
 
@@ -14,6 +15,7 @@
 }
 else
 {
+    <button @onclick="NavigateToHome">Atras.</button>
     <table class="table">
         <thead>
             <tr>
@@ -48,5 +50,10 @@ else
         {
             Console.WriteLine("Error al obtener los documentos: " + ex.Message);
         }
+    }
+
+    private void NavigateToHome()
+    {
+        Navigation.NavigateTo("/");
     }
 }
