@@ -1,0 +1,44 @@
+﻿@page "/"
+@inject NavigationManager Navigation
+@inject HttpClient Http
+@using Blazor_Prueba.Models
+
+<PageTitle>Prueba Daniel Felipe Vargas Roa </PageTitle>
+
+<h1>Prueba Blazor Ziur Software</h1>
+
+@if (isLoading)
+{
+    <p>Cargando...</p>
+}
+else
+{
+    <button @onclick="NavigateToDocumentos">Ir a Documentos</button>
+}
+
+@code {
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var response = await Http.GetFromJsonAsync<List<Documento>>("");
+
+            if (response != null)
+            {
+                isLoading = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error al cargar los datos: " + ex.Message);
+            isLoading = false; 
+        }
+    }
+
+    private void NavigateToDocumentos()
+    {
+        Navigation.NavigateTo("/documentos");
+    }
+}

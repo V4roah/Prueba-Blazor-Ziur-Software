@@ -1,0 +1,52 @@
+@page "/documentos"
+
+@using Blazor_Prueba.Models
+@inject HttpClient Http
+
+<PageTitle>Resultados API </PageTitle>
+
+
+<h1>Documentos</h1>
+
+@if (documentos == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Activo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var doc in documentos)
+            {
+                <tr>
+                    <td>@doc.Codigo</td>
+                    <td>@doc.Descripcion</td>
+                    <td>@doc.VActiva</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Documento> documentos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            documentos = await Http.GetFromJsonAsync<List<Documento>>("");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error al obtener los documentos: " + ex.Message);
+        }
+    }
+}
